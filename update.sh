@@ -5,8 +5,8 @@ set -euo pipefail
 info="info.json"
 oldversion=$(jq -rc '.version' "$info")
 
-url="https://api.github.com/repos/zen-browser/desktop/releases?per_page=1"
-version="$(curl -s "$url" | jq -rc '.[0].tag_name')"
+url="https://api.github.com/repos/zen-browser/desktop/releases/latest"
+version="$(curl -s "$url" | jq -rc '.tag_name')"
 
 if [ "$oldversion" != "$version" ]; then
   echo "Found new version $version"
